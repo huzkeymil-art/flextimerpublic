@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -18,34 +20,28 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Keys & Kites — The Breakthrough B2B Agency',
+  title: {
+    default: 'Keys & Kites — The Breakthrough B2B Agency',
+    template: '%s | Keys & Kites',
+  },
   description:
-    'Keys & Kites is a Chicago B2B launch agency. We help marketers turn new ideas into business value — taking products, services and brands off the page, into the market, and on to success.',
-  keywords: [
-    'B2B agency',
-    'B2B launch agency',
-    'B2B marketing',
-    'messaging and positioning',
-    'Keys and Kites',
-    'Chicago marketing agency',
-  ],
+    "Keys & Kites is Chicago's breakthrough B2B launch agency. We help marketers turn new ideas into business value — taking products, services and brands off the page, into the market, and on to success.",
+  keywords: ['B2B agency', 'B2B launch agency', 'B2B marketing', 'messaging and positioning', 'Keys and Kites', 'Chicago marketing agency'],
   openGraph: {
-    title: 'Keys & Kites — The Breakthrough B2B Agency',
-    description:
-      "We launch B2B ideas the market can't ignore. Strategy, creative and execution from Printer's Row, Chicago.",
     type: 'website',
     locale: 'en_US',
+    siteName: 'Keys & Kites',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
