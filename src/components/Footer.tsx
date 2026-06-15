@@ -2,59 +2,115 @@
 
 import { motion } from 'framer-motion'
 
-const footerLinks = {
-  Work: ['Case Studies', 'Industries', 'Process', 'Results'],
-  Agency: ['About', 'Team', 'Careers', 'Journal'],
-  Services: ['Brand Strategy', 'Creative Direction', 'Digital Experience', 'Market Growth'],
-  Contact: ['hello@keysandkites.com', 'New York · London', 'Instagram', 'LinkedIn'],
+const EASE = [0.22, 1, 0.36, 1] as const
+
+type FooterLink = { label: string; href: string }
+
+const linkGroups: { title: string; links: FooterLink[] }[] = [
+  {
+    title: 'Services',
+    links: [
+      { label: 'Messaging & Positioning', href: '#services' },
+      { label: 'Websites', href: '#services' },
+      { label: 'Digital Marketing', href: '#services' },
+      { label: 'Launch Strategy', href: '#services' },
+    ],
+  },
+  {
+    title: 'Agency',
+    links: [
+      { label: 'About', href: '#about' },
+      { label: 'Our Thinking', href: '#' },
+      { label: 'Careers', href: '#' },
+      { label: 'Contact', href: '#contact' },
+    ],
+  },
+  {
+    title: 'Connect',
+    links: [
+      { label: 'hello@keysandkites.com', href: 'mailto:hello@keysandkites.com' },
+      { label: 'LinkedIn', href: '#' },
+      { label: 'Chicago · Printer’s Row', href: '#' },
+    ],
+  },
+]
+
+function KiteMark({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 22 22"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M11 1.5 19 8 11 20.5 3 8 11 1.5Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11 1.5V20.5M3 8h16"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinejoin="round"
+        opacity="0.55"
+      />
+    </svg>
+  )
 }
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="bg-kk-bg border-t border-white/[0.06]">
+    <footer className="bg-kk-ink text-kk-bg">
       <div className="container-kk pt-20 pb-10">
-        {/* Top row */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-16 mb-20">
-          {/* Brand */}
-          <div className="max-w-xs">
-            <a href="#" className="flex items-center gap-3 mb-5">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 rounded-full border border-kk-gold/60" />
-                <span className="absolute inset-0 flex items-center justify-center text-kk-gold font-display font-bold">K</span>
-              </div>
-              <span className="font-display font-semibold text-kk-ink text-base tracking-[0.06em] uppercase">
-                Keys <span className="text-kk-gold">&</span> Kites
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="flex flex-col lg:flex-row lg:items-start justify-between gap-14 lg:gap-10 mb-16"
+        >
+          {/* Brand block */}
+          <div className="max-w-sm">
+            <a href="#" className="flex items-center gap-2.5 mb-5" aria-label="Keys & Kites home">
+              <span className="text-kk-clay">
+                <KiteMark />
+              </span>
+              <span className="font-display text-xl font-semibold tracking-[-0.01em]">
+                Keys <span className="text-kk-clay">&amp;</span> Kites
               </span>
             </a>
-            <p className="text-kk-dim text-sm leading-relaxed mb-6">
-              Premium creative agency for visionary brands. We craft the stories that move culture.
+            <p className="text-kk-bg/65 text-sm leading-relaxed mb-6">
+              The breakthrough B2B agency — taking new ideas off the page, into the market, and on to
+              success.
             </p>
-            <div className="flex items-center gap-4">
-              {['IG', 'LI', 'TW', 'BE'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-kk-dim text-[10px] font-semibold hover:border-kk-gold/50 hover:text-kk-gold transition-all duration-300"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
+            <address className="not-italic text-kk-bg/55 text-sm leading-relaxed">
+              727 S Dearborn St, Suite 211
+              <br />
+              Chicago, IL 60605
+            </address>
           </div>
 
-          {/* Links */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-            {Object.entries(footerLinks).map(([group, links]) => (
-              <div key={group}>
-                <p className="text-kk-ink text-xs font-semibold tracking-[0.15em] uppercase mb-4">{group}</p>
+          {/* Link groups */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 lg:gap-16">
+            {linkGroups.map((group) => (
+              <div key={group.title}>
+                <p className="text-kk-bg text-xs font-semibold tracking-[0.16em] uppercase mb-4">
+                  {group.title}
+                </p>
                 <ul className="flex flex-col gap-2.5">
-                  {links.map((link) => (
-                    <li key={link}>
+                  {group.links.map((link) => (
+                    <li key={link.label}>
                       <a
-                        href="#"
-                        className="text-kk-dim text-sm hover:text-kk-muted transition-colors duration-200"
+                        href={link.href}
+                        className="text-kk-bg/60 text-sm hover:text-kk-ochre transition-colors duration-200"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -62,16 +118,20 @@ export default function Footer() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom row */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.05]">
-          <p className="text-kk-dim text-xs tracking-wide">
-            © {new Date().getFullYear()} Keys & Kites. All rights reserved.
+        {/* Bottom bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+          <p className="text-kk-bg/50 text-xs tracking-wide text-center sm:text-left">
+            © {year} Keys &amp; Kites. The Breakthrough B2B Agency.
           </p>
           <div className="flex items-center gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookies'].map((item) => (
-              <a key={item} href="#" className="text-kk-dim text-xs hover:text-kk-muted transition-colors">
+            {['Privacy', 'Terms'].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-kk-bg/50 text-xs hover:text-kk-clay transition-colors duration-200"
+              >
                 {item}
               </a>
             ))}

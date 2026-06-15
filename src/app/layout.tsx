@@ -6,7 +6,7 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700', '800'],
   style: ['normal', 'italic'],
 })
 
@@ -18,13 +18,21 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Keys & Kites — Premium Creative Agency',
+  title: 'Keys & Kites — The Breakthrough B2B Agency',
   description:
-    'We craft brands that move culture. Premium creative strategy, brand elevation, and cinematic execution for visionary companies.',
-  keywords: ['creative agency', 'brand strategy', 'premium branding', 'Keys and Kites'],
+    'Keys & Kites is a Chicago B2B launch agency. We help marketers turn new ideas into business value — taking products, services and brands off the page, into the market, and on to success.',
+  keywords: [
+    'B2B agency',
+    'B2B launch agency',
+    'B2B marketing',
+    'messaging and positioning',
+    'Keys and Kites',
+    'Chicago marketing agency',
+  ],
   openGraph: {
-    title: 'Keys & Kites — Premium Creative Agency',
-    description: 'Brands that soar. Strategy that unlocks.',
+    title: 'Keys & Kites — The Breakthrough B2B Agency',
+    description:
+      "We launch B2B ideas the market can't ignore. Strategy, creative and execution from Printer's Row, Chicago.",
     type: 'website',
     locale: 'en_US',
   },

@@ -3,81 +3,77 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-const manifesto = [
-  { text: 'Some agencies', italic: false },
-  { text: 'make things', italic: false },
-  { text: 'pretty.', italic: true },
-  { text: 'We make', italic: false },
-  { text: 'things', italic: false },
-  { text: 'matter.', italic: true },
+const words = [
+  { t: 'We', a: false },
+  { t: 'turn', a: false },
+  { t: 'complexity', a: true },
+  { t: 'into', a: false },
+  { t: 'clarity', a: true },
+  { t: '—', a: false },
+  { t: 'without', a: false },
+  { t: 'losing', a: false },
+  { t: 'what', a: false },
+  { t: 'made', a: false },
+  { t: 'it', a: false },
+  { t: 'matter.', a: false },
 ]
 
 export default function Philosophy() {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50])
 
   return (
-    <section
-      id="about"
-      ref={ref}
-      className="py-36 lg:py-52 bg-kk-surface relative overflow-hidden"
-    >
-      {/* Ambient orbs */}
+    <section id="about" ref={ref} className="py-32 lg:py-44 bg-kk-bg relative overflow-hidden">
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(200,168,75,0.04) 0%, transparent 70%)' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full blur-[160px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(194,97,58,0.07) 0%, transparent 70%)' }}
       />
 
       <div className="container-kk relative z-10">
-        <motion.div style={{ y, opacity }}>
-          {/* Section label */}
-          <div className="section-label mb-12">
-            <span className="w-8 h-px bg-kk-gold" />
-            Our Philosophy
+        <motion.div style={{ y }}>
+          <div className="eyebrow mb-10">
+            <span className="w-8 h-px bg-kk-clay" />
+            Our Philosophy — Rich Simplicity
           </div>
 
-          {/* Manifesto */}
-          <div className="font-display font-bold text-[clamp(2.8rem,6vw,7rem)] leading-[0.92] tracking-[-0.02em] mb-16">
-            {manifesto.map((item, i) => (
+          <p className="font-display font-semibold text-[clamp(2.3rem,5.5vw,5.6rem)] leading-[1.02] tracking-[-0.02em] mb-16 max-w-5xl">
+            {words.map((w, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.8, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                className={`inline-block ${item.italic ? 'italic text-kk-gold' : 'text-kk-ink'} ${
-                  i < manifesto.length - 1 ? 'mr-[0.2em]' : ''
-                }`}
+                initial={{ opacity: 0.12 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className={`inline-block mr-[0.22em] ${w.a ? 'italic text-kk-clay' : 'text-kk-ink'}`}
               >
-                {item.text}
+                {w.t}
               </motion.span>
             ))}
-          </div>
+          </p>
 
-          {/* Supporting content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-12 border-t border-white/[0.06]"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-10 pt-12 border-t border-kk-line"
           >
-            <p className="text-kk-muted text-sm lg:text-base leading-relaxed col-span-2 max-w-xl">
-              Keys & Kites was born from a conviction: the world doesn&apos;t need more advertising.
-              It needs more truth. We exist to find the authentic core of a brand and make it
-              undeniable—through strategy that holds, design that endures, and execution that moves.
+            <p className="text-kk-graphite text-sm lg:text-base leading-relaxed col-span-2 max-w-2xl">
+              B2B is hard because the truth is complicated — technical buyers, long committees, real
+              stakes. Most marketing answers that with more: more features, more jargon, more noise. We
+              do the opposite. We call it <span className="text-kk-ink font-medium">rich simplicity</span> —
+              the discipline of saying the complicated thing simply, so the right people notice it,
+              understand it, and choose it.
             </p>
-
-            <div className="flex flex-col gap-4 lg:items-end lg:text-right">
+            <div className="flex flex-col gap-5 lg:items-end lg:text-right">
               <div>
-                <p className="text-kk-gold font-display font-bold text-xl">New York · London</p>
-                <p className="text-kk-dim text-xs mt-1">Global reach, personal attention</p>
+                <p className="text-kk-clay font-display font-semibold text-lg">Tim Cook &amp; Tom Barg</p>
+                <p className="text-kk-muted text-xs mt-1">Founding partners</p>
               </div>
               <div>
-                <p className="text-kk-gold font-display font-bold text-xl">Est. 2018</p>
-                <p className="text-kk-dim text-xs mt-1">8 years of category-defining work</p>
+                <p className="text-kk-clay font-display font-semibold text-lg">Printer&apos;s Row, Chicago</p>
+                <p className="text-kk-muted text-xs mt-1">Where the work gets made</p>
               </div>
             </div>
           </motion.div>

@@ -1,11 +1,11 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
-import Marquee from '@/components/Marquee'
-import Work from '@/components/Work'
+import ClientLogos from '@/components/ClientLogos'
+import HowWeHelped from '@/components/HowWeHelped'
 import Services from '@/components/Services'
-import Stats from '@/components/Stats'
 import Philosophy from '@/components/Philosophy'
-import Testimonials from '@/components/Testimonials'
+import WhyUs from '@/components/WhyUs'
+import Stats from '@/components/Stats'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 
@@ -15,12 +15,12 @@ export default function Home() {
       <Navigation />
       <main className="bg-kk-bg">
         <Hero />
-        <Marquee />
-        <Work />
+        <ClientLogos />
+        <HowWeHelped />
         <Services />
-        <Stats />
         <Philosophy />
-        <Testimonials />
+        <WhyUs />
+        <Stats />
         <CTA />
       </main>
       <Footer />

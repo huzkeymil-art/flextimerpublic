@@ -9,15 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'kk-bg': '#060506',
-        'kk-surface': '#0F0E10',
-        'kk-card': '#141215',
-        'kk-gold': '#C8A84B',
-        'kk-gold-light': '#E4CC7A',
-        'kk-gold-dark': '#9A7D33',
-        'kk-ink': '#EDE8E3',
-        'kk-muted': '#9A9491',
-        'kk-dim': '#5C5956',
+        // Warm neutral system — white canvas, warm ink, terracotta accent
+        'kk-bg': '#FBFAF7',
+        'kk-paper': '#FFFFFF',
+        'kk-sand': '#F2ECE1',
+        'kk-sand-deep': '#E8DFCF',
+        'kk-ink': '#1C1714',
+        'kk-graphite': '#4A423B',
+        'kk-muted': '#8A8077',
+        'kk-faint': '#B7AFA4',
+        'kk-line': '#E5DDD0',
+        'kk-clay': '#C2613A',
+        'kk-clay-deep': '#A1492A',
+        'kk-ochre': '#C2924E',
       },
       fontFamily: {
         display: ['var(--font-playfair)', 'Georgia', 'serif'],
@@ -30,22 +34,12 @@ const config: Config = {
         },
         'float-y': {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-24px)' },
-        },
-        'glow-pulse': {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.9' },
-        },
-        'draw-line': {
-          '0%': { transform: 'scaleX(0)' },
-          '100%': { transform: 'scaleX(1)' },
+          '50%': { transform: 'translateY(-18px)' },
         },
       },
       animation: {
-        marquee: 'marquee 36s linear infinite',
+        marquee: 'marquee 40s linear infinite',
         float: 'float-y 7s ease-in-out infinite',
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-        'draw-line': 'draw-line 0.8s ease forwards',
       },
     },
   },
