@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --kk-bg: #060506;
+  --kk-gold: #C8A84B;
+  --kk-ink: #EDE8E3;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--kk-bg);
+  color: var(--kk-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Premium noise grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* Thin premium scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2826;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kk-gold);
+}
+
+@layer components {
+  .container-kk {
+    @apply max-w-[1400px] mx-auto px-6 lg:px-16;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-kk-gold text-kk-bg text-sm font-semibold tracking-[0.04em] rounded-full
+    transition-all duration-300 hover:bg-kk-gold-light hover:scale-[1.03] active:scale-[0.97];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-kk-ink text-sm font-medium tracking-[0.04em] rounded-full
+    transition-all duration-300 hover:border-kk-gold/60 hover:text-kk-gold;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-3 text-kk-gold text-[10px] font-semibold tracking-[0.25em] uppercase;
+  }
+
+  .section-title {
+    @apply font-display text-kk-ink leading-[0.95] tracking-[-0.02em];
+  }
+}
+
+/* Framer Motion selection */
+::selection {
+  background: rgba(200, 168, 75, 0.3);
+  color: #EDE8E3;
+}
